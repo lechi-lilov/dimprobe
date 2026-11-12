@@ -1,0 +1,8 @@
+# torch must come from the CUDA 12.8 index:
+#   .venv/Scripts/pip install torch --index-url https://download.pytorch.org/whl/cu128
+torch
+numpy
+requests
+matplotlib
+pyyaml
+# Deliberately NOT included: datasets / pyarrow (blocked by Application Control on the dev machine).

@@ -1,0 +1,24 @@
+# Sanity check: LIMIT k=2 free-embedding critical-n (a) and R2k centroid setting (b).
+# critical-n(d) = largest n such that the all-pairs qrel matrix on n docs (C(n,2) queries)
+# is solved exactly (margin > 0) by at least one seed.
+k: 2
+dims: [2, 3, 4, 5, 6, 8, 10, 12, 14, 16]
+n_max: 400          # memory: C(400,2) x 400 = 32M scores; raise once timings are known
+seeds: [0, 1, 2]
+margin: 0.0
+
+solvers:
+  infonce:          # LIMIT-style. lr / tau NOT verified against LIMIT code -- check.
+    lr: 0.01
+    tau: 0.1
+    patience: 1000
+    max_steps: 20000
+  centroid:         # R2k-style. Handoff says R2k appendix uses Adam lr 1, 1000 steps -- verify.
+    lr: 1.0
+    patience: 1000
+    max_steps: 20000
+
+# Fill from the papers' figures/tables (do NOT fill from memory). Format {d: critical_n}.
+reference:
+  limit_infonce: {}
+  r2k_centroid: {}
